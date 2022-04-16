@@ -13,7 +13,7 @@ export const about_me = {
         },
     },
     mutations: {
-        SET_DATA(state, date) {
+        SET_DATA(state, data) {
             state[data.key] = data.value
         },
     },
