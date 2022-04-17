@@ -24,24 +24,24 @@ let db = new sqlite3.Database('database.db', (err) => {
         if (!err2) {
           const resume = [
             {
-              date: '1980-11-27',
+              date: '1989-07-05',
               title: '탄생',
-              content: '널리 이롭게 하라는 홍익인간의 뜻을 담아 탄생!!',
+              content: '백제의 마지막 수도에서 태어나다!!',
               url: null,
             },
             {
               date: '2003-01-01',
               title: 'Play Ground Gaming Inc.',
               content:
-                '당시 게임 시장에 대한 정확한 분석과 정보를 바탕으로 사람들의 게임에 대한 알권리를 제공하는 Play Ground Gameing Inc. 에 Journalist로 입사.',
+                'ㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹ',
               url: null,
             },
             {
-              date: '2014-01-01',
-              title: 'DOPT 생성',
+              date: '2022-04-20',
+              title: 'Vue3 Project ',
               content:
-                '사람들에게 더욱 더 많은 프로그램을 배포하고자 하는 목적으로 Dong Project Team이라는 팀을 생성.',
-              url: 'https://www.facebook.com/dongprojectteam',
+                '유튜브 채널!!!',
+              url: 'https://www.youtube.com/',
             },
           ]
           resume.forEach((item) => {
