@@ -1,8 +1,8 @@
-import { createStore } from "vuex"
-import { about_me } from "./modules/about-me"
+import { createStore } from 'vuex'
+import { about_me } from './modules/about-me'
 
 export const store = createStore({
-    modules:{
-        about_me: about_me,
-    }
+  modules: {
+    about_me: about_me,
+  },
 })
