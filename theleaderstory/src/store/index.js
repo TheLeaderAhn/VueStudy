@@ -5,6 +5,6 @@ import { applications } from './modules/applications'
 export const store = createStore({
   modules: {
     about_me: about_me,
-    applications : applications
-  },
+    applications : applications,
+  }
 })
