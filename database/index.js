@@ -13,7 +13,7 @@ app.use('/assets', express.static('assets'))
 const PORT = 8000
 
 let db = new sqlite3.Database('database.db', (err) => {
-  if(!err) {
+  if (!err) {
     initial.run(db, TYPE.about_me)
     initial.run(db, TYPE.resume)
     initial.run(db, TYPE.applications)
