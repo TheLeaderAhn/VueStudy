@@ -21,9 +21,27 @@
                     </router-link>
                 </li>
             </ul>
+            <ul class="navbar-nav" v-show="notification.id > 0">
+                <li class="nav-item"> 
+                    <button type="button" class="btn btn-danger">
+                        &#128226;
+                    </button>
+                </li>
+            </ul>
         </div>
     </div>
-  </nav>
+  </nav> 
+  <teleport to="#notification" v-if="show_notification">
+      <div :class="
+        'container notification border border-dark rounded-3 mt-3 p-3 bg-' +
+        notification.type
+      ">
+        <div>
+            
+        </div>
+      </div>
+
+  </teleport>
 </template>
 
 <script>

@@ -1,5 +1,7 @@
 <template>
   <nav-bar />
+  <!-- 알림 영역 -->
+  <div id="notification" />
   <router-view></router-view>
 </template>
 
