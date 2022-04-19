@@ -69,13 +69,8 @@ export default {
     const show_notification = ref(false)
     const menus = [
       { key: 'home', value: '홈', url: '/home', position: 'left' },
-      {
-        key: 'app',
-        value: '어플리케이션',
-        url: '/application',
-        position: 'left',
-      },
-      { key: 'profile', value: 'Profile', url: '/profile', position: 'right' },
+      { key: 'app', value: '어플리케이션', url: '/application',position: 'left' },
+      { key: 'profile', value: 'Profile', url: '/profile', position: 'left' },
     ]
 
     const left_menus = computed(() => menus.filter((i) => i.position == 'left'))
