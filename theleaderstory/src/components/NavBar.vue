@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="/">TripleK</a>
+      <a class="navbar-brand" href="/">안재영 vue3</a>
       <button
         class="navbar-toggler"
         type="button"

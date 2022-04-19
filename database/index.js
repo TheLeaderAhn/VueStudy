@@ -5,7 +5,6 @@ const get = require('./get.js')
 const initial = require('./initial.js')
 const cors = require('cors')
 const app = express()
-
 app.disable('x-powered-by')
 app.use(cors())
 app.use('/assets', express.static('assets'))
