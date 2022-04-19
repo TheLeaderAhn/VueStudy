@@ -51,7 +51,7 @@ module.exports.setup = function (app, db) {
         `SELECT * FROM tbl_notification WHERE expiration > date('now') AND id > ${req.params.id} ORDER BY id desc`,
         (err, row) => {
           if (!err) {
-            result.rsp = !row ? 'nodata' : 'ok'
+            result.rsp = !row ? 'nodata-없어요!!' : 'ok'
             if (row) {
               result.data = row
             }

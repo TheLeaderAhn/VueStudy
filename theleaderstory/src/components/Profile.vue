@@ -41,19 +41,19 @@
 </template>
 
 <script>
-import {defineComponent, computed} from 'vue'
-import {useStore} from 'vuex'
+import { defineComponent, computed } from 'vue'
+import { useStore } from 'vuex'
 import useAxios from '/@app_modules/axios.js'
 
-const Card  = defineComponent({
-    name : 'Card',
-    props : {
-        top:Boolean,
-        resume: Object,
-        show :  Boolean,
-    },
-    setup(props) {},
-    template: `
+const Card = defineComponent({
+  name: 'Card',
+  props: {
+    top: Boolean,
+    resume: Object,
+    show: Boolean,
+  },
+  setup(props) {},
+  template: `
     <div v-if="show" class="col-sm py-2">
         <div class="card" :class="{'border-primary bg-primary text-light': top, shadow: top }">
             <div class="card-body">
@@ -69,31 +69,24 @@ const Card  = defineComponent({
 })
 
 export default {
-    name:  'Profile',
-    setup() {
-        const store = useStore()
-        const { axiosGet } = useAxios()
-        const onSuccess = (data) => {
-            console.log('onSuccess 로그 확인 ::::',store.dispatch)
-            store.dispatch('about_me/setAboutMeData', data.data)
-        }
-        
-        axiosGet('/db/about-me', onSuccess)
+  name: 'Profile',
+  setup() {
+    const store = useStore()
+    const { axiosGet } = useAxios()
 
-        const user_data = computed(() => store.getters['about_me/user_data'])
-
-        return {
-        user_data,
-        }
-    },
-    components: {
-        Card
+    const onSuccess = (data) => {
+      store.dispatch('about_me/setAboutMeData', data.data)
     }
+    axiosGet('/db/about-me', onSuccess)
 
+    const user_data = computed(() => store.getters['about_me/user_data'])
 
+    return {
+      user_data,
+    }
+  },
+  components: {
+    Card,
+  },
 }
 </script>
-
-<style>
-
-</style>

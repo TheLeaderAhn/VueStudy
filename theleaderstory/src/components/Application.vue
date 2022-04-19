@@ -29,7 +29,7 @@ export default {
     const applications_count = computed(
       () => store.getters['applications/applications_count']
     )
-        
+
     onMounted(() => {
       if (!store.getters.applications_count) {
         axiosGet('/db/applications', (data) => {
@@ -47,4 +47,4 @@ export default {
     AppCard,
   },
 }
-</script> 
+</script>
