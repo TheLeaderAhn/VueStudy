@@ -1,4 +1,4 @@
-mudule.export.setup = function (app, db){
+module.exports.setup  = function (app, db){
     app.post('/db/accounts/login/:email/:password', (req,res,next) => {
         let result = {
             rsp : 'fail',
