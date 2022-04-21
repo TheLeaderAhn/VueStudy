@@ -125,6 +125,21 @@ function fn_blog(db) {
   )
 }
 
+function fn_accounts(db) {
+  db.run('DROP TABLE IF EXISTS tbl_accounts')
+
+  db.run(
+    "CREATE TABLE IF NOT EXISTS tbl_accounts (id INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT, password TEXT, date DATETIME DEFAULT (datetime('now', 'localtime')), grade TEXT, token TEXT)",
+    (err) => {
+      if (!err) {
+        query = `INSERT OR IGNORE INTO tbl_accounts (id, email,password, grade, token) VALUES ( (SELECT id FROM tbl_accounts WHERE grade = 'owner'), 'vue', 'vue', 'owner', null)`
+        db.run(query)
+      }
+    }
+  )
+
+}
+
 module.exports.run = function (db, type) {
   if (type == TYPE.about_me) {
     fn_about_me(db)
@@ -136,5 +151,7 @@ module.exports.run = function (db, type) {
     fn_notification(db)
   } else if (type == TYPE.blog) {
     fn_blog(db)
+  } else if (type == TYPE.accounts) {
+    fn_accounts(db)
   }
 }
