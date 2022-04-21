@@ -1,8 +1,9 @@
 <template>
   <div v-if="state == 'ok'">
     <div class="row text-end pe-sm-2">
-      <small><a href="#" @click="onLogout">Logout</a></small>
+      <h5><a href="#" @click="onLogout">Logout</a></h5>
     </div>
+    <h3 class="text-messsge1">관리자 페이지는 현재 작업중입니다.</h3>
   </div>
   <div v-else-if="state == 'loading'">Loading...</div>
   <login v-else :email="email" :type="state" @state="state = 'ok'" />
@@ -57,3 +58,8 @@ export default {
   components: { Login },
 }
 </script>
+<style scoped>
+.text-messsge1{
+  text-align: center;
+}
+</style>

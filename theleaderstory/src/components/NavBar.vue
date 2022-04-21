@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="/">안재영 vue3</a>
+      <a class="navbar-brand" href="/">안재영 VUE3</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -25,18 +25,15 @@
         </ul>
         <ul class="navbar-nav" v-show="notification.id > 0">
           <li class="nav-item">
-            <button
-              type="button"
-              class="btn btn-danger"
-              @click="onOpenNotification"
-            >
-              &#128226;
+            <button type="button" class="btn" @click="onOpenNotification">
+              &#x1F514;
             </button>
           </li>
         </ul>
       </div>
     </div>
   </nav>
+  <!-- eslint-disable-next-line vue/no-multiple-template-root -->
   <teleport to="#notification" v-if="show_notification">
     <div
       :class="
@@ -69,8 +66,14 @@ export default {
     const show_notification = ref(false)
     const menus = [
       { key: 'home', value: '홈', url: '/home', position: 'left' },
-      { key: 'app', value: '어플리케이션', url: '/application',position: 'left' },
+      {
+        key: 'app',
+        value: '어플리케이션',
+        url: '/application',
+        position: 'left',
+      },
       { key: 'profile', value: 'Profile', url: '/profile', position: 'left' },
+      { key: 'admin', value: 'Admin', url: '/admin', position: 'right' },
     ]
 
     const left_menus = computed(() => menus.filter((i) => i.position == 'left'))
@@ -83,7 +86,7 @@ export default {
         evt.preventDefault()
       }
 
-      show_notification.value = true
+      show_notification.value = !show_notification.value
     }
 
     const onCloseNotification = (evt) => {
