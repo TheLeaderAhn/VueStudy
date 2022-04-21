@@ -1,9 +1,9 @@
 <template>
-  <div v-if="state == 'ok'">
-    <div class="row text-end pe-sm-2">
-      <h5><a href="#" @click="onLogout">Logout</a></h5>
+  <div v-if="state == 'ok'" class="my-3">
+    <div class="row text-end pe-2">
+      <small><a href="#" @click="onLogout">Logout</a></small>
     </div>
-    <h3 class="text-messsge1">관리자 페이지는 현재 작업중입니다.</h3>
+    <editor />
   </div>
   <div v-else-if="state == 'loading'">Loading...</div>
   <login v-else :email="email" :type="state" @state="state = 'ok'" />
@@ -12,6 +12,7 @@
 <script>
 import { ref, onBeforeMount } from 'vue'
 import Login from '/@components/Login.vue'
+import Editor from '/@components/Editor.vue'
 import { getCookie, setCookie } from '/@app_modules/cookie.js'
 import useLogin from '/@app_modules/login.js'
 export default {
@@ -55,11 +56,6 @@ export default {
 
     return { state, email, onLogout }
   },
-  components: { Login },
+  components: { Login, Editor },
 }
 </script>
-<style scoped>
-.text-messsge1{
-  text-align: center;
-}
-</style>
