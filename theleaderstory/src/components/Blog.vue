@@ -12,7 +12,8 @@
         >
           <h2 class="blog-post-title">{{ article.title }}</h2>
           <p class="blog-post-meta">{{ article.date }}</p>
-          <div v-html="article.post" />
+          <div v-if="article.type == 'html'" v-html="article.post" />
+          <markdown v-else-if="(type = 'md')" id="md" :source="article.post" />
         </article>
 
         <nav class="blog-pagination" aria-label="Pagination">
@@ -27,7 +28,7 @@
             href="#"
             >이전</a
           >
-              {{ page -1 }} {{ page }} {{ page +1 }}
+          ---- {{ page }} ----
           <a
             class="btn"
             :class="[
@@ -47,9 +48,8 @@
           <h4 class="font-italic">About</h4>
           <p class="mb-0">
             컴퓨터로 세상을 만들어가는 것이 너무나 즐거워 다양한 프로그래밍 관련
-            포스팅을 올리고 있습니다. <br/>
-            내 github에 'database' 프로젝트와 동시에 실행해야 합니다.
-            초기 고정 비밀번호 'vue' // 희망하는 Id-> @붙여서 만들면 생성됨
+            포스팅을 올리고 있습니다. 아울러 누구나 무료로 사용할 수 있는 다양한
+            어플리케이션도 배포하고 있으니 많은 사랑 부탁드립니다.
           </p>
         </div>
 
@@ -82,9 +82,9 @@
         <div class="p-4">
           <h4 class="font-italic">Elsewhere</h4>
           <ol class="list-unstyled">
-            <li><a href="https://github.com/TheLeaderAhn/VueStudy">내 Github</a></li>
-            <li><a href="#">Youtube 연결</a></li>
-            <li><a href="http://localhost:8000/">database</a></li>
+            <li><a href="#">GitHub</a></li>
+            <li><a href="#">Twitter</a></li>
+            <li><a href="#">Facebook</a></li>
           </ol>
         </div>
       </div>
@@ -96,6 +96,7 @@
 
 <script>
 import { ref, reactive, onMounted, computed } from 'vue'
+import Markdown from 'vue3-markdown-it'
 import useAxios from '/@app_modules/axios.js'
 export default {
   setup() {
@@ -152,6 +153,9 @@ export default {
       archives,
       onArchive,
     }
+  },
+  components: {
+    Markdown,
   },
 }
 </script>
