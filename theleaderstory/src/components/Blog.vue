@@ -1,9 +1,8 @@
 <template>
-<!-- bootstrap5 예제 파일참고  -->
- <main class="container mt-3">
+  <main class="container mt-3">
     <div class="row justify-content-md-center">
       <div class="col-md-8">
-        <h3 class="pb-4 mb-4 font-italic border-bottom">안재영의 개인 Blog</h3>
+        <h3 class="pb-4 mb-4 font-italic border-bottom">안재영의 Blog</h3>
 
         <article
           class="blog-post"
@@ -26,9 +25,9 @@
             ]"
             @click="page--"
             href="#"
-            >Older</a
+            >이전</a
           >
-          {{ page }}
+              {{ page -1 }} {{ page }} {{ page +1 }}
           <a
             class="btn"
             :class="[
@@ -38,7 +37,7 @@
             ]"
             @click="page++"
             href="#"
-            >Newer</a
+            >다음</a
           >
         </nav>
       </div>
@@ -80,22 +79,79 @@
         </div>
 
         <div class="p-4">
-          <h4 class="font-italic">추가 연락 링크</h4>
+          <h4 class="font-italic">Elsewhere</h4>
           <ol class="list-unstyled">
-            <li><a href="https://github.com/TheLeaderAhn/VueStudy">개인 GitHub</a></li>
-            <li><a href="https://github.com/TheLeaderAhn/VueStudy">개인 유튜브</a></li>
-            <li><a href="#">Facebook 연결미정</a></li>
+            <li><a href="https://github.com/TheLeaderAhn/VueStudy">내 Github</a></li>
+            <li><a href="#">Youtube 연결</a></li>
+            <li><a href="http://localhost:8000/">database</a></li>
           </ol>
         </div>
       </div>
     </div>
+    <!-- /.row -->
   </main>
-
+  <!-- /.container -->
 </template>
 
 <script>
+import { ref, reactive, onMounted, computed } from 'vue'
+import useAxios from '/@app_modules/axios.js'
 export default {
-    name: 'Blog',
+  setup() {
+    // 데이타 가져오기
+    const { axiosGet } = useAxios()
+    const posts = reactive([])
+    onMounted(() => {
+      axiosGet('/db/blog', onSuccess)
+    })
+
+    const onSuccess = (data) => {
+      Object.assign(posts, data.data)
+      total_rows.value = posts.length
+
+      const temp_group = posts.reduce((accumulator, currentValue) => {
+        ;(accumulator[currentValue['date'].substring(0, 7)] =
+          accumulator[currentValue['date'].substring(0, 7)] || []).push(
+          currentValue
+        )
+        return accumulator
+      }, {})
+
+      Object.assign(
+        archives,
+        Object.keys(temp_group).map((key) => ({
+          key: key,
+          posts: temp_group[key],
+        }))
+      )
+    }
+
+    // 페이징 처리
+    const rows = ref(5)
+    const total_rows = ref(0)
+    const page = ref(1)
+    const total_pages = computed(() => {
+      return Math.ceil(total_rows.value / rows.value)
+    })
+    const sliced_posts = computed(() => {
+      return posts.slice((page.value - 1) * rows.value, page.value * rows.value)
+    })
+
+    // 아카이브
+    const archives = reactive([])
+    const onArchive = (evt, id) => {
+      const index = posts.findIndex((post) => post.id == id) + 1
+      page.value = Math.ceil(index / rows.value)
+    }
+
+    return {
+      sliced_posts,
+      page,
+      total_pages,
+      archives,
+      onArchive,
+    }
+  },
 }
 </script>
 
