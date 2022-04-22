@@ -37,15 +37,15 @@ const Clip = defineComponent({
     <div class="card">
       <div class="ratio ratio-16x9">
         <iframe
-          src="https://www.youtube.com/embed/iNYUpxY_yqs"
-          title="스크래치 튜토리얼 #1"
+          src="https://www.youtube.com/watch?v=iX3Nu1FcZKA"
+          title="와 Vite 쓰면 리액트 10배 빨라짐 (과장아님)"
           allowfullscreen
         ></iframe>
       </div>
       <div class="card-body">
-        <h5 class="card-title">스크래치 튜토리얼 #1</h5>
+        <h5 class="card-title">와 Vite 쓰면 리액트 10배 빨라짐 (과장아님)</h5>
         <p class="card-text">
-          걸어다니는 고양이를 구현하여 스프라이트의 사용법을 배웁니다.
+          와 Vite 쓰면 리액트 10배 빨라짐 (과장아님)
         </p>
       </div>
     </div>
