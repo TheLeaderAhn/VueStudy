@@ -28,7 +28,7 @@
             href="#"
             >이전</a
           >
-          ~ {{ page }} ~
+            ~ {{ page }} ~
           <a
             class="btn"
             :class="[
@@ -47,14 +47,16 @@
         <div class="p-4 mb-3 bg-light rounded">
           <h4 class="font-italic">About</h4>
           <p class="mb-0">
-            컴퓨터로 세상을 만들어가는 것이 너무나 즐거워 다양한 프로그래밍 관련
+            &nbsp;머리속 아이디어를 실체로 만들어가는 것이 너무나 즐거워 다양한 프로그래밍 관련
             포스팅을 올리고 있습니다. 아울러 누구나 무료로 사용할 수 있는 다양한
-            어플리케이션도 배포하고 있으니 많은 사랑 부탁드립니다.
+            어플리케이션도 배포하고 있으니 많은 사랑 부탁드립니다.<br/><br/>
+            &nbsp;블로그 게시물을 작성하려면 admin계정을 등록해주세요<br/>
+            모든 아이디의 초기 비밀번호는 'vue' 를 입력해 주셔야합니다.
           </p>
         </div>
 
-        <div class="p-4">
-          <h4 class="font-italic">Archives</h4>
+        <blog-plugin>
+          <template v-slot:header>Archives</template>
           <ol class="list-unstyled mb-0">
             <li v-for="(archive, index) in archives" :key="index">
               <a
@@ -77,16 +79,26 @@
               </div>
             </li>
           </ol>
-        </div>
+        </blog-plugin>
 
-        <div class="p-4">
-          <h4 class="font-italic">Elsewhere</h4>
+        <blog-plugin>
+          <template v-slot:header>Elsewhere</template>
           <ol class="list-unstyled">
-            <li><a href="#">GitHub</a></li>
-            <li><a href="#">Twitter</a></li>
-            <li><a href="#">Facebook</a></li>
+            <li>
+              <a href="https://github.com/TheLeaderAhn" target="_blank"
+                >안재영의 GitHub</a
+              >
+            </li>
+            <li>
+              <a href="https://theleader.tistory.com/" target="_blank">개인 Blog</a>
+            </li>
+            <li>
+              <a href="#" target="_blank"
+                >Instagram</a
+              >
+            </li>
           </ol>
-        </div>
+        </blog-plugin>
       </div>
     </div>
     <!-- /.row -->
@@ -98,6 +110,7 @@
 import { ref, reactive, onMounted, computed } from 'vue'
 import Markdown from 'vue3-markdown-it'
 import useAxios from '/@app_modules/axios.js'
+import BlogPlugin from '/@components/BlogPlugin.vue'
 export default {
   setup() {
     // 데이타 가져오기
@@ -156,6 +169,7 @@ export default {
   },
   components: {
     Markdown,
+    BlogPlugin,
   },
 }
 </script>
