@@ -28,7 +28,7 @@
             href="#"
             >이전</a
           >
-          ---- {{ page }} ----
+          ~ {{ page }} ~
           <a
             class="btn"
             :class="[
@@ -129,7 +129,7 @@ export default {
     }
 
     // 페이징 처리
-    const rows = ref(5)
+    const rows = ref(2)
     const total_rows = ref(0)
     const page = ref(1)
     const total_pages = computed(() => {
