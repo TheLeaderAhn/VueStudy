@@ -1,17 +1,24 @@
 <template>
+  <toast />
   <nav-bar />
-  <!-- 알림 영역 -->
   <div id="notification" />
-  <router-view></router-view>
+  <router-view />
 </template>
 
 <script>
 import NavBar from '/@components/NavBar.vue'
+import Toast from '/@components/Toast.vue'
+import { ref, provide } from 'vue'
 
 export default {
   name: 'App',
+  setup() {
+    const toast = ref('')
+    provide('toast', toast)
+  },
   components: {
     NavBar,
+    Toast,
   },
 }
 </script>
